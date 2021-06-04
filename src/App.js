@@ -4,6 +4,7 @@ import iotaLogo from "./assets/iota_logo.png";
 import React from "react";
 import DisplayMessages from "./components/DisplayMessages";
 import Input from "./components/Input/Input";
+import hex_to_ascii from "./services/hex_to_ascii";
 
 const {
   Converter,
@@ -91,15 +92,6 @@ function App() {
     const message = await client.message(messageIds[index]);
     setMessage(hex_to_ascii(message.payload.data));
     setIndex(index);
-  }
-
-  function hex_to_ascii(str1) {
-    var hex = str1.toString();
-    var str = "";
-    for (var n = 0; n < hex.length; n += 2) {
-      str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
-    }
-    return str;
   }
 }
 
