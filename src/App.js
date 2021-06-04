@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import iotaLogo from "./assets/iota_logo.png";
 import React from "react";
 import DisplayMessages from "./components/DisplayMessages";
+import Input from "./components/Input/Input";
 
 const {
   Converter,
@@ -28,19 +29,12 @@ function App() {
   return (
     <div>
       <Display>
-        <Input>
-          <label htmlFor="message">
-            <h1>Insert message:</h1>
-          </label>
-          <textarea
-            id="message"
-            onChange={(event) => setInput(event.target.value)}
-            value={input}
-          />
-          <button disabled={disabled} onClick={sendMessage}>
-            {disabled ? "Sending..." : "Send Message to tangle"}
-          </button>
-        </Input>
+        <Input
+          input={input}
+          handleOnChange={handleOnChange}
+          handleSendMessage={sendMessage}
+          disabled={disabled}
+        />
         <DisplayMessages
           message={message}
           id={index > -1 && messageIds[index]}
@@ -58,6 +52,10 @@ function App() {
       ))}
     </div>
   );
+
+  function handleOnChange(event) {
+    setInput(event.target.value);
+  }
 
   async function getAllMessages() {
     const messages = await client.messagesFind(Converter.utf8ToBytes(INDEX));
@@ -112,11 +110,6 @@ const Display = styled.div`
   width: 100vw;
   justify-content: space-between;
   padding: 15px;
-`;
-
-const Input = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 const IOTAButton = styled.button`
