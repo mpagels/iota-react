@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import iotaLogo from "./assets/iota_logo.png";
-import React from "react";
 import DisplayMessages from "./components/DisplayMessages";
 import Input from "./components/Input/Input";
 import useIota from "./hooks/useIota";
+import iotaLogo from "./assets/iota_logo.png";
 
 function App() {
   const {
