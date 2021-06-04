@@ -42,7 +42,7 @@ export default function useIota() {
         ),
         payload: {
           type: INDEXATION_PAYLOAD_TYPE,
-          index: Converter.utf8ToHex("MartinPagels"),
+          index: Converter.utf8ToHex(INDEX),
           data: Converter.utf8ToHex(input),
         },
       };
